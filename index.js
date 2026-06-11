@@ -21,6 +21,18 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
 app.use(express.json());
 
+// ---- CORS: permite que a loja hospedada em outro endereço (ex.: Netlify)
+//      chame este backend. Defina ALLOWED_ORIGIN no Render com a URL do
+//      seu site Netlify (ex.: https://sualoja.netlify.app). "*" libera geral. ----
+const ALLOWED_ORIGIN = process.env.ALLOWED_ORIGIN || "*";
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", ALLOWED_ORIGIN);
+  res.header("Access-Control-Allow-Headers", "Content-Type");
+  res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+  if (req.method === "OPTIONS") return res.sendStatus(204);
+  next();
+});
+
 // ---- Config (variáveis de ambiente, definidas no painel do Render) ----
 const VEOPAG_BASE = "https://api.veopag.com";
 const CLIENT_ID = process.env.VEOPAG_CLIENT_ID;
