@@ -1,0 +1,17 @@
+{
+  "name": "mundial26-loja",
+  "version": "1.0.0",
+  "description": "Loja MUNDIAL 26 + pagamento Pix VeoPag (app único para Render)",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "node-fetch": "^3.3.2"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
